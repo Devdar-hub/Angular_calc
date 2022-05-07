@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp',[]);
+        app.service('myService',function(){
+           this.funzero = function(x){
+               
+               if(x == 0)
+               return ':- Cannot divided by zero';
+               else
+               return '';
+           }
+        });
+        app.controller('myCon',function($scope,myService){
+            
+            $scope.check = function(){
+                $scope.result = $scope.num1+$scope.num2;
+            }
+            $scope.mul = function(){
+                $scope.result = $scope.num1*$scope.num2;
+            }
+            $scope.div = function(x){
+                $scope.zero = myService.funzero(x);
+                $scope.result = $scope.num1/$scope.num2;
+            }
+            $scope.sub = function(){
+                $scope.result = $scope.num1-$scope.num2;
+            }
+            $scope.mod = function(x){
+                $scope.zero = myService.funzero(x);
+                $scope.result = $scope.num1%$scope.num2;
+            }
+           
+           
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myCon" class="w3-center">
+    <h1>Enter number for Calculation and select required operation </h1><br> <br>
+    <input type="number" name="num1"  ng-model="num1" placeholder="Number 1"> <br>
+    <input type="number" name="num2"  ng-model="num2" placeholder="Number 2"> <br><br>
+    <button ng-click="check()">add</button> 
+    <button ng-click="mul()">Multiplication</button> 
+    <button ng-click="div(num2)">Division</button> 
+    <button ng-click="sub()">Substraction</button> 
+    <button ng-click="mod(num2)">Modulus</button> 
+    <br><br>
+   <h3 class="w3-hover-red"> output : {{result}} {{zero}} </h3> 
+   
+</body>
+</html>
